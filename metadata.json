@@ -1,0 +1,10 @@
+{
+  "name": "Bloom",
+  "description": "Una aplicación premium para conectar personas de todo el mundo, con geolocalización, chats en tiempo real y opciones avanzadas de comunidad.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

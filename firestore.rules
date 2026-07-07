@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Profiles Collection
+    match /profiles/{profileId} {
+      allow read: if isSignedIn();
+      allow create, update: if isOwner(profileId);
+      allow delete: if isSignedIn(); // Add delete for ban actions or owner
+    }
+
+    // Posts Collection
+    match /posts/{postId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && request.resource.data.user_id == request.auth.uid;
+      allow update: if isSignedIn(); // Allow updating likes/shares/comments count
+      allow delete: if isSignedIn();
+    }
+
+    // Comments Collection
+    match /comments/{commentId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && request.resource.data.user_id == request.auth.uid;
+      allow update, delete: if isSignedIn();
+    }
+
+    // Messages Collection
+    match /messages/{messageId} {
+      allow read, create, update, delete: if isSignedIn();
+    }
+
+    // Blocks Collection
+    match /blocks/{blockId} {
+      allow read, create, update, delete: if isSignedIn();
+    }
+
+    // Reports Collection
+    match /reports/{reportId} {
+      allow read, create, update, delete: if isSignedIn();
+    }
+
+    // Feedback Collection
+    match /feedback/{feedbackId} {
+      allow read, create, update, delete: if isSignedIn();
+    }
+    
+    // Fallback rule for simple connections tests
+    match /test/connection {
+      allow read, write: if true;
+    }
+  }
+}

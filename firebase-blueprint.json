@@ -1,0 +1,156 @@
+{
+  "entities": {
+    "Profile": {
+      "title": "User Profile",
+      "description": "The profile of a registered user containing dating preferences and emotional status.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "The unique user ID" },
+        "first_name": { "type": "string", "description": "First name" },
+        "last_name": { "type": "string", "description": "Last name" },
+        "username": { "type": "string", "description": "A unique username" },
+        "birthdate": { "type": "string", "format": "date", "description": "Birthdate of user" },
+        "age": { "type": "number", "description": "Calculated age of user" },
+        "zodiac": { "type": "string", "description": "Zodiac sign name" },
+        "zodiac_icon": { "type": "string", "description": "Zodiac emoji/icon" },
+        "gender": { "type": "string", "description": "Gender identity of user" },
+        "gender_icon": { "type": "string", "description": "Gender representation icon" },
+        "orientation": { "type": "string", "description": "Sexual orientation" },
+        "orientation_icon": { "type": "string", "description": "Orientation representation icon" },
+        "show_age": { "type": "boolean", "description": "Flag to display age in profile" },
+        "show_orientation": { "type": "boolean", "description": "Flag to display orientation in profile" },
+        "avatar_url": { "type": "string", "description": "Avatar image URL" },
+        "banner_url": { "type": "string", "description": "Profile banner image URL" },
+        "bio": { "type": "string", "description": "User short biography" },
+        "gustos": { "type": "array", "description": "List of tags, interests or tastes" },
+        "looking_for": { "type": "string", "description": "Dating intention preference" },
+        "emotional_status": { "type": "string", "description": "Current emotional status" },
+        "location_lat": { "type": "number", "description": "Latitude coordinate" },
+        "location_lng": { "type": "number", "description": "Longitude coordinate" },
+        "location_name": { "type": "string", "description": "Location display name" },
+        "country": { "type": "string", "description": "Country name" },
+        "language": { "type": "string", "description": "Preferred language" },
+        "is_admin": { "type": "boolean", "description": "Indicates if user has admin privileges" },
+        "created_at": { "type": "string", "format": "date-time", "description": "ISO timestamp of profile creation" }
+      },
+      "required": ["id", "first_name", "last_name", "username", "birthdate", "age", "gender", "orientation", "looking_for", "emotional_status"]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "A public post made by a user which can contain text, image, likes, shares, etc.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Post ID" },
+        "user_id": { "type": "string", "description": "ID of the author" },
+        "content": { "type": "string", "description": "Text body of the post" },
+        "image_urls": { "type": "array", "description": "List of post image attachments" },
+        "hashtags": { "type": "array", "description": "List of parsed hashtags" },
+        "likes_count": { "type": "number", "description": "Count of likes" },
+        "comments_count": { "type": "number", "description": "Count of comments" },
+        "shares_count": { "type": "number", "description": "Count of shares" },
+        "likes": { "type": "array", "description": "Array of user IDs who liked the post" },
+        "shares": { "type": "array", "description": "Array of user IDs who shared the post" },
+        "created_at": { "type": "string", "format": "date-time", "description": "ISO timestamp of creation" }
+      },
+      "required": ["id", "user_id", "content"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "A comment on a post.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Comment ID" },
+        "post_id": { "type": "string", "description": "The target post ID" },
+        "user_id": { "type": "string", "description": "Author user ID" },
+        "content": { "type": "string", "description": "Comment text" },
+        "created_at": { "type": "string", "format": "date-time", "description": "ISO timestamp of creation" }
+      },
+      "required": ["id", "post_id", "user_id", "content"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "A direct message between two users.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Message ID" },
+        "sender_id": { "type": "string", "description": "Sender user ID" },
+        "receiver_id": { "type": "string", "description": "Receiver user ID" },
+        "content": { "type": "string", "description": "Text content" },
+        "image_urls": { "type": "array", "description": "Attached images" },
+        "location_lat": { "type": "number", "description": "Latitude coordinate shared" },
+        "location_lng": { "type": "number", "description": "Longitude coordinate shared" },
+        "location_name": { "type": "string", "description": "Shared location name" },
+        "status": { "type": "string", "description": "Message status (sent/read)" },
+        "deleted_for": { "type": "array", "description": "User IDs who deleted this message for themselves" },
+        "created_at": { "type": "string", "format": "date-time", "description": "ISO timestamp of creation" }
+      },
+      "required": ["id", "sender_id", "receiver_id", "content"]
+    },
+    "Block": {
+      "title": "Block",
+      "description": "Represents a user block interaction.",
+      "type": "object",
+      "properties": {
+        "blocker_id": { "type": "string", "description": "Blocker user ID" },
+        "blocked_id": { "type": "string", "description": "Blocked user ID" }
+      },
+      "required": ["blocker_id", "blocked_id"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "A report submitted against a user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Report ID" },
+        "reporter_id": { "type": "string", "description": "Reporter ID" },
+        "reported_user_id": { "type": "string", "description": "ID of reported user" },
+        "reason": { "type": "string", "description": "Reason details" },
+        "created_at": { "type": "string", "format": "date-time", "description": "ISO timestamp of report" }
+      },
+      "required": ["id", "reporter_id", "reported_user_id", "reason"]
+    },
+    "Feedback": {
+      "title": "Feedback",
+      "description": "User submitted feedback for the app administration.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Feedback ID" },
+        "user_id": { "type": "string", "description": "Sender ID" },
+        "rating": { "type": "number", "description": "Rating out of 5" },
+        "comment": { "type": "string", "description": "Detailed text comment" },
+        "created_at": { "type": "string", "format": "date-time", "description": "ISO timestamp" }
+      },
+      "required": ["id", "user_id", "rating"]
+    }
+  },
+  "firestore": {
+    "/profiles/{profileId}": {
+      "schema": "Profile",
+      "description": "Collection of user profiles containing dating info."
+    },
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Collection of public timeline posts."
+    },
+    "/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Collection of post comments."
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Collection of chat direct messages."
+    },
+    "/blocks/{blockId}": {
+      "schema": "Block",
+      "description": "Collection of blocker and blocked users mapping."
+    },
+    "/reports/{reportId}": {
+      "schema": "Report",
+      "description": "Collection of user abuse reports."
+    },
+    "/feedback/{feedbackId}": {
+      "schema": "Feedback",
+      "description": "Collection of administration feedback logs."
+    }
+  }
+}
