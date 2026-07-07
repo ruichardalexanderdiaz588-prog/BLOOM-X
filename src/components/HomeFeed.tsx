@@ -534,43 +534,6 @@ export default function HomeFeed({
                 <strong className="text-lg text-pink-600">{selectedPost.shares_count}</strong>
               </div>
             </div>
-
-            <div className="space-y-3">
-              <span className="text-xs font-bold text-gray-700 block">{t.statsViewsGeo}</span>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-600">América Latina</span>
-                  <span className="font-semibold text-gray-800">45%</span>
-                </div>
-                <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-pink-500 h-full rounded-full" style={{ width: '45%' }} />
-                </div>
-
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-600">Europa</span>
-                  <span className="font-semibold text-gray-800">30%</span>
-                </div>
-                <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-pink-500 h-full rounded-full" style={{ width: '30%' }} />
-                </div>
-
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-600">Norteamérica</span>
-                  <span className="font-semibold text-gray-800">15%</span>
-                </div>
-                <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-pink-500 h-full rounded-full" style={{ width: '15%' }} />
-                </div>
-
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-600">Otros</span>
-                  <span className="font-semibold text-gray-800">10%</span>
-                </div>
-                <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-pink-500 h-full rounded-full" style={{ width: '10%' }} />
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       )}
